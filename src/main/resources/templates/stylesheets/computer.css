@@ -1,0 +1,9 @@
+input[type="checkbox"].isWorkable[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.style2 {
+    color: blue;
+    font-style: italic;
+}
