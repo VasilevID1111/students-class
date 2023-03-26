@@ -2,6 +2,7 @@ package com.example.studentclass.computers;
 
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -20,8 +21,8 @@ public class ComputerService {
             throw new IllegalArgumentException(); //написать ошибки
         }
     }
-    public Iterable<ComputerDTO> getComputersAll() {
-        return computerDAO.findAll();
+    public Iterable<ComputerDTO> getComputersAllDesc() {
+        return computerDAO.findByOrderByIsWorkableDesc();
     }
 
     public void saveComputer(ComputerDTO computer) {

@@ -16,13 +16,14 @@ public class ComputerController {
 
     @GetMapping(value = "/")
     public String computers(Model model) {
-        model.addAttribute("computers",computerService.getComputersAll());
+        model.addAttribute("computers",computerService.getComputersAllDesc());
         return "computers";
     }
 
     @GetMapping("/{compId}")
-    public ComputerDTO getComputer(@PathVariable Integer compId) {
-        return computerService.getComputer(compId);
+    public String getComputer(@PathVariable Integer compId, Model model) {
+        model.addAttribute("computer", computerService.getComputer(compId));
+        return "shedule";
     }
 
     @PostMapping("/create")
@@ -30,10 +31,10 @@ public class ComputerController {
         computerService.saveComputer(computer);
         return "redirect:/computers/";
     }
-
-    @DeleteMapping("/delete/{compId}")
+    @GetMapping ("/delete/{compId}")
     public String deleteComputer(@PathVariable Integer compId){
         computerService.deleteComputer(compId);
         return "redirect:/computers/";
     }
+
 }
