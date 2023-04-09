@@ -4,7 +4,7 @@
     <title>
         Компьютеры
     </title>
-    <link rel="stylesheet" type="text/css" href="stylesheets/computer.css">
+    <link rel="stylesheet" type="text/css" href="../static/styles/style.css">
 </head>
 <body>
 <h1>Компьютеры</h1>

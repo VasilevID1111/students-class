@@ -1,0 +1,27 @@
+input[type="checkbox"].isWorkable[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+.style2 {
+    color: blue;
+    font-style: italic;
+}
+table.custom-border td {
+    border-color: #333;
+    border-width: 3px;
+}
+table td:hover.hover {
+    background-color: rgba(0,0,0,.075);
+}
+td.weekend {
+    background-color: #d5d4d4;
+}
+td.free {
+    background-color: #72fa72;
+}
+td.little-busy {
+    background-color: #d9d9a5;
+}
+td.very-busy {
+    background-color: #c5b181;
+}
