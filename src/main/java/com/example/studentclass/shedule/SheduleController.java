@@ -1,4 +1,4 @@
-package com.example.studentclass.controllers;
+package com.example.studentclass.shedule;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

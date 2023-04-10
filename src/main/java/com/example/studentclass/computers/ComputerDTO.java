@@ -1,6 +1,6 @@
 package com.example.studentclass.computers;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.Data;
 
 @Data

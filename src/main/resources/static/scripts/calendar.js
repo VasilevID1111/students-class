@@ -1,5 +1,5 @@
 
-function clickHandlerColumn(e) {
+function clickHandlerDay(e) {
     var cell = e.target;
     alert(cell.innerText);
 }
@@ -55,22 +55,22 @@ function showCalendar(month, year) {
                         break;
                     case 4:
                         cell.classList.add("free");
-                        cell.addEventListener('click', clickHandlerColumn);
+                        cell.addEventListener('click', clickHandlerDay);
                         cell.classList.add("hover");
                         break;
                     case 3:
                         cell.classList.add("free");
-                        cell.addEventListener('click', clickHandlerColumn);
+                        cell.addEventListener('click', clickHandlerDay);
                         cell.classList.add("hover");
                         break;
                     case 2:
                         cell.classList.add("little-busy");
-                        cell.addEventListener('click', clickHandlerColumn);
+                        cell.addEventListener('click', clickHandlerDay);
                         cell.classList.add("hover");
                         break;
                     default:
                         cell.classList.add("very-busy")
-                        cell.addEventListener('click', clickHandlerColumn);
+                        cell.addEventListener('click', clickHandlerDay);
                         cell.classList.add("hover");
                 }
                 if (date === today.getDate() && year === today.getFullYear() && month === today.getMonth()) {

@@ -8,6 +8,10 @@
 </head>
 <body>
 <h1>Компьютеры</h1>
+<form action="/logout" method="post">
+    <input type="hidden" name="_csrf" value="${_csrf.token}">
+    <input type="submit" value="Выйти">
+</form>
 <hr>
 <#list computers as computer>
     <div>

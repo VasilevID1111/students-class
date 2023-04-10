@@ -11,6 +11,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="/styles/style.css">
     <script src="/scripts/calendar.js"></script>
+    <script src="/scripts/timeday.js"></script>
 </head>
 <body>
 <#--Привет ${computer.}-->
@@ -40,6 +41,21 @@
     </div>
 </div>
 
+<div class="container col-sm-4 col-md-7 col-lg-4 mt-5">
+    <div class="card border-0">
+        <table class="table table-bordered border-dark" id="timeday">
+            <thead>
+            <tr>
+                Время
+            </tr>
+            </thead>
+            <tbody id="timeday-body" class="border border-dark">
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
 
 <script>
     let today = new Date();
@@ -50,6 +66,7 @@
 
     let monthAndYear = document.getElementById("monthAndYear");
     showCalendar(currentMonth, currentYear);
+    showTimeTable();
 </script>
 
 
