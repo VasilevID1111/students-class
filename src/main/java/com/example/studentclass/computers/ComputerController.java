@@ -1,9 +1,12 @@
 package com.example.studentclass.computers;
 
+import com.example.studentclass.shedule.SheduleService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
 
 @Controller
 @AllArgsConstructor
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 public class ComputerController {
 
     private final ComputerService computerService;
+    private final SheduleService sheduleService;
 
     @GetMapping(value = "/")
     public String computers(Model model) {
@@ -21,6 +25,8 @@ public class ComputerController {
     @GetMapping("/{compId}")
     public String getComputer(@PathVariable Integer compId, Model model) {
         model.addAttribute("computer", computerService.getComputer(compId));
+        model.addAttribute("shedules",
+                sheduleService.getShedulesByCompIdOnDate(compId, new Date()));
         return "shedule";
     }
 

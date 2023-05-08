@@ -1,8 +1,17 @@
 let global_CurrentDay = -1;
 function clickHandlerDay(e) {
     var cell = e.target;
+    let previous_cell = $('td').filter(function() {
+        return $(this).text().trim().includes(global_CurrentDay);
+    })[0];
+    console.log(previous_cell);
+    previous_cell.classList.remove('bg-info');
+    previous_cell.classList.remove('hover')
+    previous_cell.classList.add("free");
     global_CurrentDay = cell.innerText;
-    alert(cell.innerText);
+    cell.classList.add("bg-info");
+    let currentDate = new Date(currentYear,currentMonth,global_CurrentDay);
+    showTimeTable(currentDate);
 }
 
 function next() {
@@ -49,35 +58,23 @@ function showCalendar(month, year) {
                 let cell = document.createElement("td");
                 let cellText = document.createTextNode(date);
                 /* let cellId = document.createNode; */
-                switch (j) {
-                    case 5:
-                    case 6:
-                        cell.classList.add("weekend");
-                        break;
-                    case 4:
+                if (date < today.getDate() && year === today.getFullYear() && month === today.getMonth() ||
+                    (year <= today.getFullYear() && month < today.getMonth()) ||
+                    (year < today.getFullYear())) {
+                    cell.classList.add("nowork");
+                } else {
+                    if (j === 5 || j === 6 ) {
+                        cell.classList.add("nowork");
+                    } else {
                         cell.classList.add("free");
                         cell.addEventListener('click', clickHandlerDay);
                         cell.classList.add("hover");
-                        break;
-                    case 3:
-                        cell.classList.add("free");
-                        cell.addEventListener('click', clickHandlerDay);
-                        cell.classList.add("hover");
-                        break;
-                    case 2:
-                        cell.classList.add("little-busy");
-                        cell.addEventListener('click', clickHandlerDay);
-                        cell.classList.add("hover");
-                        break;
-                    default:
-                        cell.classList.add("very-busy")
-                        cell.addEventListener('click', clickHandlerDay);
-                        cell.classList.add("hover");
+                    }
+                    if (date === today.getDate() && year === today.getFullYear() && month === today.getMonth()) {
+                        global_CurrentDay = cellText.wholeText;
+                        cell.classList.add("bg-info");
+                    } // color today's date
                 }
-                if (date === today.getDate() && year === today.getFullYear() && month === today.getMonth()) {
-                    global_CurrentDay = cellText.wholeText;
-                    cell.classList.add("bg-info");
-                } // color today's date
                 cell.appendChild(cellText);
                 row.appendChild(cell);
                 date++;

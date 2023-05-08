@@ -14,6 +14,7 @@
     <script src="/scripts/calendar.js"></script>
     <script src="/scripts/timeday.js"></script>
     <script src="/scripts/sendtime.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 <#--Привет ${computer.}-->
@@ -58,13 +59,18 @@
         </table>
     </div>
 </div>
-<sec:authentication property="principal.username" />
 
 <script>
     const sendButton = document.getElementById("sendButton");
     sendButton.addEventListener("click", sendtime);
     let compId = ${computer.compId};
     let token = "${_csrf.token}";
+    let shedules = {
+        <#list shedules?keys as key>
+            "${key}": "${shedules[key]}",
+        </#list>
+    };
+    console.log(shedules)
     let today = new Date();
     let currentMonth = today.getMonth();
     let currentYear = today.getFullYear();
@@ -73,7 +79,7 @@
 
     let monthAndYear = document.getElementById("monthAndYear");
     showCalendar(currentMonth, currentYear);
-    showTimeTable();
+    showTimeTable(today);
 </script>
 
 

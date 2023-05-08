@@ -50,10 +50,35 @@ function clickHandlerTime(e) {
         global_i = -1;
     }
 }
+function parseRangeString(rangeString) {
+    const result = [];
 
-function showTimeTable() {
+    rangeString.split(',').forEach(range => {
+        const [start, end] = range.split('-');
+        console.log("start_end",start,end);
+        for (let i = parseInt(start); i <= parseInt(end); i++) {
+            result.push(i);
+        }
+    });
+    return result;
+}
+function showTimeTable(selectedDate) {
+    //parse 1-4,11-14 and next.
+    let daysOff =[];
+    let dateFormatted = selectedDate.toLocaleDateString('en-GB', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric'
+    }).split('/').join('-');
+    console.log(dateFormatted);
+    if (dateFormatted in shedules) {
+        daysOff = parseRangeString(shedules[dateFormatted]);
+    }
+    console.log("daysOff",daysOff);
+
+
+    //creation of table with time
     let tbl = document.getElementById("timeday-body"); // body of the timeday
-
     // clearing all previous cells
     tbl.innerHTML = "";
     // creating all cells
@@ -81,9 +106,15 @@ function showTimeTable() {
                     cellText = document.createTextNode(hour+":45");
                     break;
             }
-            cell.appendChild(cellText);
-            cell.addEventListener('click',clickHandlerTime);
             let num = i*4+j;
+
+
+            cell.appendChild(cellText);
+            if (daysOff.includes(num)) {
+                cell.classList.add("nowork");
+            } else {
+                cell.addEventListener('click',clickHandlerTime);
+            }
             cell.setAttribute('id','time_cell'+num)
             row.appendChild(cell);
         }

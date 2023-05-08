@@ -13,7 +13,7 @@ table.custom-border td {
 table td:hover.hover {
     background-color: rgba(0,0,0,.075);
 }
-td.weekend {
+td.nowork {
     background-color: #d5d4d4;
 }
 td.free {
