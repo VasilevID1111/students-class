@@ -8,10 +8,12 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="/styles/style.css">
     <script src="/scripts/calendar.js"></script>
     <script src="/scripts/timeday.js"></script>
+    <script src="/scripts/sendtime.js"></script>
 </head>
 <body>
 <#--Привет ${computer.}-->
@@ -41,6 +43,8 @@
     </div>
 </div>
 
+<button id="sendButton">Записаться</button>
+
 <div class="container col-sm-4 col-md-7 col-lg-4 mt-5">
     <div class="card border-0">
         <table class="table table-bordered border-dark" id="timeday">
@@ -54,10 +58,13 @@
         </table>
     </div>
 </div>
-
-
+<sec:authentication property="principal.username" />
 
 <script>
+    const sendButton = document.getElementById("sendButton");
+    sendButton.addEventListener("click", sendtime);
+    let compId = ${computer.compId};
+    let token = "${_csrf.token}";
     let today = new Date();
     let currentMonth = today.getMonth();
     let currentYear = today.getFullYear();

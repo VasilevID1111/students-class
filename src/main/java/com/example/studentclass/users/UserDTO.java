@@ -1,5 +1,6 @@
 package com.example.studentclass.users;
 
+import com.example.studentclass.shedule.SheduleDTO;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -7,9 +8,7 @@ import com.example.studentclass.enums.Role;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "users")
@@ -37,6 +36,10 @@ public class UserDTO implements UserDetails {
     @Column(name = "date_of_created")
     private LocalDateTime dateOfCreated;
 
+    @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY,
+    mappedBy = "user")
+    private List<SheduleDTO> visits = new ArrayList<>();
+
     private  void init(){
         dateOfCreated = LocalDateTime.now();
     }
@@ -48,7 +51,7 @@ public class UserDTO implements UserDetails {
 
     @Override
     public String getUsername() {
-        return fio;
+        return login;
     }
 
     @Override

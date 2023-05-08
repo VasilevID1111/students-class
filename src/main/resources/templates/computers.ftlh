@@ -27,6 +27,7 @@
 </#list>
 <h3>
     <form action="/computers/create" method="post">
+        <input type="hidden" name="_csrf" value="${_csrf.token}">
         Название компьютера: <input type="text" name="name"/><br><br>
         Описание компьютера: <input type="text" name="purpose"/><br><br>
         <input id="html" type="checkbox" name="workable"> <label for="html">Компьютер рабочий</label><br><br>

@@ -1,9 +1,14 @@
 let global_i = -1;
+let global_BeginTime = -1;
+let global_EndTime = 36;
+
 function clickHandlerTime(e) {
     var cellId = parseInt(e.target.id.replace("time_cell", ''));
     if (global_i == cellId){
         e.target.style.backgroundColor = '';
         global_i = -1;
+        global_BeginTime = -1;
+        global_EndTime  = 36;
         return;
     }
     if (global_i == -1) {
@@ -13,14 +18,18 @@ function clickHandlerTime(e) {
         }
         e.target.style.backgroundColor = 'lightgreen';
         global_i = cellId;
+        global_BeginTime = cellId;
+        global_EndTime = cellId;
     } else {
         let min; let max; let counter=0;
         if (global_i > cellId) {
             min = cellId;
             max = global_i;
+            global_BeginTime = cellId;
         } else {
             min = global_i;
             max = cellId;
+            global_EndTime = cellId;
         }
         for (min; min <= max; min++) {
             counter++;
@@ -28,11 +37,12 @@ function clickHandlerTime(e) {
             cell.style.backgroundColor = 'lightgreen';
             if (counter > 16) {
                 for (let i = min; i > min-16; i--) {
-                    console.log(i,min,max);
                     let cell = document.getElementById("time_cell"+i);
                     cell.style.backgroundColor = '';
                 }
                 e.target.style.backgroundColor = '';
+                global_BeginTime = global_i;
+                global_EndTime   = global_i;
                 alert('Нельзя больше 4 часов арендовывать комп');
                 return;
             }

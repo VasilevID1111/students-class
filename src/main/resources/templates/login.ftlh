@@ -16,8 +16,9 @@
 <form action="/login" method="post">
     <!-- Login input -->
     <div class="form-outline mb-4">
-        <input type="text" id="login" name="username" class="form-control" />
-        <label class="form-label" for="login">Login</label>
+
+        <input type="text" id="username" name="username" class="form-control"/>
+        <label class="form-label" for="username">Login</label>
     </div>
 
     <!-- Password input -->

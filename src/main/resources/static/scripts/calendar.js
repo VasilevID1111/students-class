@@ -1,6 +1,7 @@
-
+let global_CurrentDay = -1;
 function clickHandlerDay(e) {
     var cell = e.target;
+    global_CurrentDay = cell.innerText;
     alert(cell.innerText);
 }
 
@@ -74,6 +75,7 @@ function showCalendar(month, year) {
                         cell.classList.add("hover");
                 }
                 if (date === today.getDate() && year === today.getFullYear() && month === today.getMonth()) {
+                    global_CurrentDay = cellText.wholeText;
                     cell.classList.add("bg-info");
                 } // color today's date
                 cell.appendChild(cellText);

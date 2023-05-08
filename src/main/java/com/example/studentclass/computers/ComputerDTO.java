@@ -1,7 +1,12 @@
 package com.example.studentclass.computers;
 
 import javax.persistence.*;
+
+import com.example.studentclass.shedule.SheduleDTO;
 import lombok.Data;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -20,4 +25,8 @@ public class ComputerDTO {
 
     @Column(name = "isWorkable")
     private boolean isWorkable;
+
+    @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY,
+    mappedBy = "computer")
+    private List<SheduleDTO> visits = new ArrayList<>();
 }
