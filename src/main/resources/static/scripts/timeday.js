@@ -50,18 +50,6 @@ function clickHandlerTime(e) {
         global_i = -1;
     }
 }
-function parseRangeString(rangeString) {
-    const result = [];
-
-    rangeString.split(',').forEach(range => {
-        const [start, end] = range.split('-');
-        console.log("start_end",start,end);
-        for (let i = parseInt(start); i <= parseInt(end); i++) {
-            result.push(i);
-        }
-    });
-    return result;
-}
 function showTimeTable(selectedDate) {
     //parse 1-4,11-14 and next.
     let daysOff =[];
@@ -72,7 +60,7 @@ function showTimeTable(selectedDate) {
     }).split('/').join('-');
     console.log(dateFormatted);
     if (dateFormatted in shedules) {
-        daysOff = parseRangeString(shedules[dateFormatted]);
+        daysOff = shedules[dateFormatted];
     }
     console.log("daysOff",daysOff);
 

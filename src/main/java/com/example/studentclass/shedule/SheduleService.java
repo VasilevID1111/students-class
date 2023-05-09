@@ -39,11 +39,28 @@ public class SheduleService {
             String formattedDate = sdf.format(dateOfVisit);
             if (DateTimed.containsKey(formattedDate)) {
                 DateTimed.put(formattedDate,
-                        DateTimed.get(formattedDate) + "," + visit.getTimed_blocks());
+                        DateTimed.get(formattedDate) + parseRangeString(visit.getTimed_blocks()));
+
             } else {
-                DateTimed.put(formattedDate, visit.getTimed_blocks());
+                DateTimed.put(formattedDate, parseRangeString(visit.getTimed_blocks()));
+            }
+        }
+        for (Map.Entry<String, String> entry : DateTimed.entrySet()) {
+            if (entry.getValue().split(",").length == 37) {
+                DateTimed.put(entry.getKey(), "out");
             }
         }
         return DateTimed;
+    }
+
+    public static String parseRangeString(String rangeString) {
+        String result = "";
+        String[] startEnd = rangeString.split("-");
+        int start = Integer.parseInt(startEnd[0]);
+        int end = Integer.parseInt(startEnd[1]);
+        for (int i = start; i <= end; i++) {
+            result += "," + i;
+        }
+        return result;
     }
 }
