@@ -15,4 +15,7 @@ public interface SheduleDAO extends JpaRepository<SheduleDTO, Integer> {
 
     @Query("FROM SheduleDTO a WHERE a.date >= :startDate AND a.computer.compId = :compId")
     List<SheduleDTO> findByCompAfterDate(@Param("compId") Integer compId,@Param("startDate") Date afterDate);
+
+    @Query("FROM SheduleDTO a WHERE a.user.Id = :userId")
+    List<SheduleDTO> findByUser(Integer userId);
 }

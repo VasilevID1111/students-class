@@ -44,7 +44,14 @@
     </div>
 </div>
 
-<button id="sendButton">Записаться</button>
+<form id="addVisit" action="/shedule/${compId}" method="post">
+    <input type="hidden" name="_csrf" value="${_csrf.token}">
+    <input type="hidden" name="date" id="dateField">
+    <input type="hidden" name="timed_blocks" id="timeBlocksField">
+    <input type="hidden" name="status" value="sign">
+    <button id="sendButton" onclick="sendtime()">Записаться</button>
+</form>
+
 
 <div class="container col-sm-4 col-md-7 col-lg-4 mt-5">
     <div class="card border-0">
@@ -61,10 +68,6 @@
 </div>
 
 <script>
-    const sendButton = document.getElementById("sendButton");
-    sendButton.addEventListener("click", sendtime);
-    let compId = ${computer.compId};
-    let token = "${_csrf.token}";
     let shedules = {
         <#list shedules?keys as key>
             "${key}": "${shedules[key]}",

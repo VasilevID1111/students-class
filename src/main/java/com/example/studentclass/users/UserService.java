@@ -24,7 +24,7 @@ public class UserService {
         return true;
     }
 
-    public UserDTO getUser(String userId) {
-        return userDAO.findByLogin(userId);
+    public UserDTO getUser(String login) {
+        return userDAO.findByLogin(login);
     }
 }

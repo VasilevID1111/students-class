@@ -5,7 +5,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -14,9 +13,9 @@ import java.util.*;
 @RequiredArgsConstructor
 public class SheduleService {
     @Autowired
-    private final SheduleDAO SheduleDAO;
+    private final SheduleDAO sheduleDAO;
     public SheduleDTO getComputer(Integer sheduleId) {
-        Optional<SheduleDTO> visit = SheduleDAO.findById(sheduleId);
+        Optional<SheduleDTO> visit = sheduleDAO.findById(sheduleId);
         if (visit.isPresent()) {
             return visit.get();
         } else {
@@ -24,15 +23,14 @@ public class SheduleService {
         }
     }
     public void saveShedule(SheduleDTO visit) {
-        SheduleDAO.save(visit);
+        sheduleDAO.save(visit);
     }
     public void deleteSheduleById(Integer sheduleId){
-        SheduleDAO.deleteById(sheduleId);
+        sheduleDAO.deleteById(sheduleId);
     }
-
     public Hashtable<String,String> getShedulesByCompIdOnDate(Integer compId, Date afterDate) {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        List<SheduleDTO> visits = SheduleDAO.findByCompAfterDate(compId,afterDate);
+        List<SheduleDTO> visits = sheduleDAO.findByCompAfterDate(compId,afterDate);
         Hashtable<String,String> DateTimed = new Hashtable<String, String>();
         for (SheduleDTO visit : visits) {
             Date dateOfVisit = visit.getDate();
@@ -62,5 +60,9 @@ public class SheduleService {
             result += "," + i;
         }
         return result;
+    }
+
+    public List<SheduleDTO> getVisitByUserId(Integer login) {
+        return sheduleDAO.findByUser(login);
     }
 }
