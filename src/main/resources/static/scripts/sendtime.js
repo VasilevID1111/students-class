@@ -26,5 +26,5 @@ function sendtime() {
     dateField.value = dateOfVisit;
     timeBlocksField.value = timeBlocks;
     console.log(dateField.value,timeBlocksField.value)
-    document.getElementById('addVisit').submit();
+    document.getElementById('addVisit').submit(); //тест коммист
 }
