@@ -40,12 +40,8 @@ public class UserController {
                                @RequestParam("email") String email,
                                @RequestParam("isActive") Boolean isActive,
                                RedirectAttributes redirectAttributes) {
-        if (userService.getUser(login) != null) {
-            throw new IllegalArgumentException("Пользователь уже существует");
-        }
         String password = userService.generatePassword(8);
         UserDTO user = new UserDTO();
-        Date date = user.getDateOfCreated();
         user.setLogin(login);
         user.setFio(fio);
         user.setEmail(email);
