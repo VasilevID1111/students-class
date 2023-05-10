@@ -20,7 +20,7 @@ public class UserService {
     public boolean createUser(UserDTO user){
         if (userDAO.findByLogin(user.getLogin()) != null) return false;
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.getRoles().add(Role.ROLE_STUDENT);
+        user.setRole(Role.ROLE_STUDENT);
         userDAO.save(user);
         log.info("new user: {}",user.getFio());
         return true;

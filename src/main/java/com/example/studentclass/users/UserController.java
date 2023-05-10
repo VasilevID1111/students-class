@@ -30,7 +30,8 @@ public class UserController {
 //        return "redirect:/login";
 //    }
     @GetMapping("/users")
-    public String getUsers(Model model) {
+    public String getUsers(Model model, RedirectAttributes redirectAttributes) {
+        model.addAttribute(redirectAttributes);
         model.addAttribute("users", userService.getUsers());
         return "users";
     }

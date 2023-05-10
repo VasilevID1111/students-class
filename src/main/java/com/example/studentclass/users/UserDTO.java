@@ -28,10 +28,8 @@ public class UserDTO implements UserDetails {
     private boolean active;
     @Column(name = "password", length = 1000)
     private String password;
-    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
-    @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
-    private Set<Role> roles = new HashSet<>();
+    private Role role;
     @Column(name = "date_of_created")
     private Date dateOfCreated;
 
@@ -47,6 +45,8 @@ public class UserDTO implements UserDetails {
     }
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
+        Set<Role> roles = new HashSet<>();
+        roles.add(role);
         return roles;
     }
 
