@@ -34,16 +34,18 @@ public class UserDTO implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Set<Role> roles = new HashSet<>();
     @Column(name = "date_of_created")
-    private LocalDateTime dateOfCreated;
+    private Date dateOfCreated;
 
     @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY,
     mappedBy = "user")
     private List<SheduleDTO> visits = new ArrayList<>();
 
-    private  void init(){
-        dateOfCreated = LocalDateTime.now();
+    private void init(){
+        dateOfCreated = new Date();
     }
-
+    public UserDTO(){
+        init();
+    }
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles;
