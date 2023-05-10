@@ -23,7 +23,7 @@ public class ComputerController {
     }
 
     @GetMapping("/{compId}")
-    public String getComputer(@PathVariable Integer compId, Model model) {
+    public String getSheduleByComp(@PathVariable Integer compId, Model model) {
         model.addAttribute("computer", computerService.getComputer(compId));
         model.addAttribute("shedules",
                 sheduleService.getShedulesByCompIdOnDate(compId, new Date()));

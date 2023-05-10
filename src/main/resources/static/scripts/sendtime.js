@@ -19,12 +19,11 @@
 function sendtime() {
     let month = currentMonth+1; //js по другому повспринимает месяца от 0 до 11
     let dateOfVisit = global_CurrentDay + "-" + month + "-" + currentYear;
-    alert(dateOfVisit);
     let timeBlocks = global_BeginTime + '-' + global_EndTime;
     let dateField = document.getElementById('dateField');
     let timeBlocksField = document.getElementById('timeBlocksField');
     dateField.value = dateOfVisit;
     timeBlocksField.value = timeBlocks;
     console.log(dateField.value,timeBlocksField.value)
-    document.getElementById('addVisit').submit(); //тест коммистasd
+    document.getElementById('addVisit').submit();
 }

@@ -62,7 +62,11 @@ public class SheduleService {
         return result;
     }
 
-    public List<SheduleDTO> getVisitByUserId(Integer login) {
-        return sheduleDAO.findByUser(login);
+    public List<SheduleDTO> getVisitsByUserId(Integer userId) {
+        return sheduleDAO.findByUser(userId);
+    }
+
+    public List<SheduleDTO> getVisitsByUserIdAfterDate(Integer userId, Date date) {
+        return sheduleDAO.findByUserIdAfterDate(userId, date);
     }
 }

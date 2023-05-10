@@ -52,6 +52,7 @@
     <button id="sendButton" onclick="sendtime()">Записаться</button>
 </form>
 
+<span id="time-range"></span>
 
 <div class="container col-sm-4 col-md-7 col-lg-4 mt-5">
     <div class="card border-0">

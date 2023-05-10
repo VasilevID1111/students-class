@@ -4,11 +4,13 @@ let global_EndTime = 36;
 
 function clickHandlerTime(e) {
     var cellId = parseInt(e.target.id.replace("time_cell", ''));
+    let timeRangeElement = document.getElementById('time-range');
     if (global_i == cellId){
         e.target.style.backgroundColor = '';
         global_i = -1;
         global_BeginTime = -1;
         global_EndTime  = 36;
+        timeRangeElement.textContent = "";
         return;
     }
     if (global_i == -1) {
@@ -49,6 +51,7 @@ function clickHandlerTime(e) {
         }
         global_i = -1;
     }
+    timeRangeElement.textContent = convertTimeRange(global_BeginTime + "-" + global_EndTime);
 }
 function showTimeTable(selectedDate) {
     //parse 1-4,11-14 and next.
@@ -108,4 +111,21 @@ function showTimeTable(selectedDate) {
         }
         tbl.appendChild(row);  // appending each row into timeday body.
     }
+}
+
+function convertTimeRange(timeRange) {
+    const startHour = 9;
+    const startMinute = 0;
+    const timeSlotMinutes = 15;
+
+    const [start, end] = timeRange.split('-').map(Number);
+    const startTime = startHour * 60 + startMinute + start * timeSlotMinutes;
+    const endTime = startHour * 60 + startMinute + end * timeSlotMinutes + 15;
+    console.log(startTime,endTime);
+    const startHourStr = String(Math.floor(startTime / 60)).padStart(2, '0');
+    const startMinuteStr = String(startTime % 60).padStart(2, '0');
+    const endHourStr = String(Math.floor(endTime / 60)).padStart(2, '0');
+    const endMinuteStr = String(endTime % 60).padStart(2, '0');
+
+    return `c ${startHourStr}-${startMinuteStr} до ${endHourStr}-${endMinuteStr}`;
 }

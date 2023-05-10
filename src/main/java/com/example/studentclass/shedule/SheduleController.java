@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Collections;
@@ -36,17 +37,22 @@ public class SheduleController {
     }
 
     @GetMapping("/visits/")
-    public String visits(Model model) {
+    public String getPlannedVisits(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String login= ((UserDetails) authentication.getPrincipal()).getUsername();
         UserDTO user = userService.getUser(login);
         Integer user_id = user.getId();
-        List<SheduleDTO> schedules = sheduleService.getVisitByUserId(user_id);
-        Collections.sort(schedules, (s1, s2) -> s1.getDate().compareTo(s2.getDate()));
+        List<SheduleDTO> schedules = sheduleService.getVisitsByUserIdAfterDate(user_id, new Date());
+        Collections.sort(schedules, Comparator.comparing(SheduleDTO::getDate));
         model.addAttribute("visits",schedules);
         return "visits";
     }
 
+    @GetMapping("/visits/delete/{visitId}")
+    public String getPlannedVisits(@PathVariable Integer visitId) {
+        sheduleService.deleteSheduleById(visitId);
+        return "redirect:/visits/";
+    }
     @PostMapping("/shedule/{compId}")
     public String visit(@PathVariable Integer compId,
                         @RequestParam("date") String date,
