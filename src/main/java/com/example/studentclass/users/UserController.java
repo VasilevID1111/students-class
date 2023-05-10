@@ -24,6 +24,12 @@ public class UserController {
 //        }
 //        return "redirect:/login";
 //    }
+    @GetMapping("/users")
+    public String getUsers(Model model) {
+        model.addAttribute("users", userService.getUsers());
+        return "users";
+}
+
     @GetMapping("/logout")
     public String securityUrl() {
         return "redirect:/login";

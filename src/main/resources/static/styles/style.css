@@ -1,3 +1,7 @@
+* {
+    border: 1px dotted #e89633;
+}
+
 input[type="checkbox"].isWorkable[disabled] {
     opacity: 0.5;
     cursor: not-allowed;

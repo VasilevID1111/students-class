@@ -1,13 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>
-        Посещения
-    </title>
-    <link rel="stylesheet" type="text/css" href="../static/styles/style.css">
-    <script src="/scripts/timeday.js"></script>
-</head>
-<body>
+<#import "blocks/template.ftlh" as t>
+<@t.template>
 <h1>Запланированные посещения</h1>
 <hr>
 <script>
@@ -30,5 +22,5 @@
         timeRangeElement.textContent = timeRange;
     </script>
 </#list>
-</body>
-</html>
+</@t.template>
+

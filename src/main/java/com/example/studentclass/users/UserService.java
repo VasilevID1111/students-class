@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import java.util.*;
 
 @Service
 @Slf4j
@@ -26,5 +27,9 @@ public class UserService {
 
     public UserDTO getUser(String login) {
         return userDAO.findByLogin(login);
+    }
+
+    public List<UserDTO> getUsers() {
+        return userDAO.findAll();
     }
 }
