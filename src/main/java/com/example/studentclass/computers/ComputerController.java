@@ -16,7 +16,7 @@ public class ComputerController {
     private final ComputerService computerService;
     private final SheduleService sheduleService;
 
-    @GetMapping(value = "/")
+    @GetMapping
     public String computers(Model model) {
         model.addAttribute("computers",computerService.getComputersAllDesc());
         return "computers";
@@ -38,7 +38,7 @@ public class ComputerController {
     @GetMapping ("/delete/{compId}")
     public String deleteComputer(@PathVariable Integer compId){
         computerService.deleteComputer(compId);
-        return "redirect:/computers/";
+        return "redirect:/computers";
     }
 
 }

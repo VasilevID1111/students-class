@@ -31,12 +31,12 @@ public class SheduleController {
     private final SheduleService sheduleService;
     private final UserService userService;
     private final ComputerService computerService;
-    @GetMapping("/shedule/")
+    @GetMapping("/shedule")
     public String shedule() {
         return "shedule";
     }
 
-    @GetMapping("/visits/")
+    @GetMapping("/visits")
     public String getPlannedVisits(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String login= ((UserDetails) authentication.getPrincipal()).getUsername();
@@ -69,6 +69,6 @@ public class SheduleController {
         visit.setUser(user);
         visit.setComputer(computerService.getComputer(compId));
         sheduleService.saveShedule(visit);
-        return "redirect:/visits/";
+        return "redirect:/visits";
     }
 }

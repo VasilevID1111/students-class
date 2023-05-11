@@ -1,38 +1,47 @@
 <#import "blocks/template.ftlh" as t>
 <@t.template>
-    <form action="/login" method="post">
-        <!-- Login input -->
-        <div class="form-outline mb-4">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <form action="/login" method="post">
+                            <!-- Login input -->
+                            <div class="form-group">
+                                <label for="username">Логин</label>
+                                <input type="text" id="username" name="username" class="form-control"/>
+                            </div>
 
-            <input type="text" id="username" name="username" class="form-control"/>
-            <label class="form-label" for="username">Логин</label>
-        </div>
+                            <!-- Password input -->
+                            <div class="form-group">
+                                <label for="password">Пароль</label>
+                                <input type="password" id="password" name="password" class="form-control"/>
+                            </div>
 
-        <!-- Password input -->
-        <div class="form-outline mb-4">
-            <input type="password" id="password" name="password" class="form-control"/>
-            <label class="form-label" for="password">Пароль</label>
-        </div>
+                            <!-- Checkbox -->
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked/>
+                                <label class="form-check-label" for="form2Example31"> Запомнить пароль </label>
+                            </div>
 
-        <!-- 2 column grid layout for inline styling -->
-        <div class="row mb-4">
-            <div class="col d-flex justify-content-center">
-                <!-- Checkbox -->
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked/>
-                    <label class="form-check-label" for="form2Example31"> Запомнить пароль </label>
+                            <input type="hidden" name="_csrf" value="${_csrf.token}">
+
+                            <!-- Submit button -->
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-block" style="width: 100%;">Войти</button>
+                            </div>
+
+                        </form>
+
+                        <!-- Forgot password link -->
+                        <div class="text-center">
+                            <a href="#!" class="text-muted">Забыли пароль?</a>
+                        </div>
+
+                    </div>
                 </div>
             </div>
-
-            <div class="col">
-                <!-- Simple link -->
-                <a href="#!">Забыли пароль?</a>
-            </div>
         </div>
+    </div>
 
-        <!-- Submit button -->
-        <input type="hidden" name="_csrf" value="${_csrf.token}">
-        <button type="submit" class="btn btn-primary btn-block mb-4">Войти</button>
-
-    </form>
 </@t.template>

@@ -15,17 +15,13 @@ table.custom-border td {
     border-width: 3px;
 }
 table td:hover.hover {
-    background-color: rgba(0,0,0,.075);
+    background-color: #d6eaf8;
 }
+
 td.nowork {
-    background-color: #d5d4d4;
+    background-color: #a9a9a9;
 }
+
 td.free {
-    background-color: #72fa72;
-}
-td.little-busy {
-    background-color: #d9d9a5;
-}
-td.very-busy {
-    background-color: #c5b181;
+    background-color: #c3e6cb;
 }
