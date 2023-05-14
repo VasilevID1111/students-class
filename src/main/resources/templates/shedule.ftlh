@@ -25,17 +25,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="form-group">
-                    <form id="addVisit" action="/shedule/${compId}" method="post">
-                        <input type="hidden" name="_csrf" value="${_csrf.token}">
-                        <input type="hidden" name="date" id="dateField">
-                        <input type="hidden" name="timed_blocks" id="timeBlocksField">
-                        <input type="hidden" name="status" value="sign">
-                        <button id="sendButton" class="btn btn-primary btn-block" style="width: 100%;" onclick="sendtime()">
-                            Записаться
-                        </button>
-                    </form>
-                </div>
+
             </div>
             <div class="col-sm-12 col-md-6 col-lg-6">
                 <div class="card border-0">
@@ -55,6 +45,17 @@
                     <h5>Время записи</h5>
                     <span id="time-range"></span>
                 </div>
+            </div>
+            <div class="form-group">
+                <form id="addVisit" action="/shedule/${compId}" method="post">
+                    <input type="hidden" name="_csrf" value="${_csrf.token}">
+                    <input type="hidden" name="date" id="dateField">
+                    <input type="hidden" name="timed_blocks" id="timeBlocksField">
+                    <input type="hidden" name="status" value="sign">
+                    <button id="sendButton" class="btn btn-primary btn-block" style="width: 100%;" onclick="sendtime()">
+                        Записаться
+                    </button>
+                </form>
             </div>
         </div>
 
