@@ -5,12 +5,6 @@
             <div class="col-md-6">
                 <h1>Компьютеры</h1>
             </div>
-            <div class="col-md-6 text-right">
-                <form action="/logout" method="post">
-                    <input type="hidden" name="_csrf" value="${_csrf.token}">
-                    <input type="submit" value="Выйти" class="btn btn-primary mb-3">
-                </form>
-            </div>
         </div>
         <div class="row">
             <form action="/computers/create" method="post">

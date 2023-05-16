@@ -71,4 +71,5 @@ public class SheduleController {
         sheduleService.saveShedule(visit);
         return "redirect:/visits";
     }
+
 }

@@ -6,6 +6,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +21,14 @@ public class UserService {
     @Autowired
     private final UserDAO userDAO;
     private final PasswordEncoder passwordEncoder;
+
+    public UserDTO getUserByAuthentication(Authentication authentication){
+        if (authentication != null && authentication.isAuthenticated()) {
+            String login= ((UserDetails) authentication.getPrincipal()).getUsername();
+            return getUser(login);
+        }
+        return null;
+    }
 
     public boolean createUser(UserDTO user) {
         if (userDAO.findByLogin(user.getLogin()) != null) return false;

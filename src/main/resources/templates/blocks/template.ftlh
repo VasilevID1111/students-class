@@ -19,6 +19,44 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     </head>
     <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand">${globalUserName}</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <#if globalRole = "ROLE_WORKER">
+                     <li class="nav-item">
+                        <a class="nav-link" href="#">Записать студента</a>
+                     </li>
+                     <li class="nav-item">
+                       <a class="nav-link" href="#">Отметить студента</a>
+                     </li>
+                     <li class="nav-item">
+                       <a class="nav-link" href="#">Отчет</a>
+                     </li>
+                     <li class="nav-item">
+                         <a class="nav-link" href="#">Пользователи</a>
+                     </li>
+                <#else>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Записаться</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Мои записи</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Поменять пароль</a>
+                    </li>
+                </#if>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" onclick="logout()">Выйти</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
     <div class="container mt-4">
         <#nested>
     </div>
@@ -33,6 +71,22 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
             integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
             crossorigin="anonymous"></script>
+    <script>
+        function logout() {
+            var form = document.createElement('form');
+            form.method = 'post';
+            form.action = '/logout';
+
+            var csrfTokenInput = document.createElement('input');
+            csrfTokenInput.type = 'hidden';
+            csrfTokenInput.name = '${_csrf.parameterName}';
+            csrfTokenInput.value = '${_csrf.token}';
+
+            form.appendChild(csrfTokenInput);
+            document.body.appendChild(form);
+            form.submit();
+        }
+    </script>
     </body>
     </html>
 </#macro>

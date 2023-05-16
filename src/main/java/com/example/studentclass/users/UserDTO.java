@@ -55,6 +55,8 @@ public class UserDTO implements UserDetails {
         return login;
     }
 
+    public String getFio() {return fio;}
+
     @Override
     public boolean isAccountNonExpired() {
         return true;
