@@ -19,7 +19,7 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     </head>
     <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-sm navbar-light bg-light">
         <a class="navbar-brand">${globalUserName}</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,28 +29,28 @@
             <ul class="navbar-nav">
                 <#if globalRole = "ROLE_WORKER">
                      <li class="nav-item">
-                        <a class="nav-link" href="#">Записать студента</a>
+                        <a class="nav-link" href="/computers">Записать студента</a>
                      </li>
                      <li class="nav-item">
-                       <a class="nav-link" href="#">Отметить студента</a>
+                       <a class="nav-link" href="/check">Отметить студента</a>
                      </li>
                      <li class="nav-item">
-                       <a class="nav-link" href="#">Отчет</a>
+                       <a class="nav-link" href="/report">Отчет</a>
                      </li>
                      <li class="nav-item">
-                         <a class="nav-link" href="#">Пользователи</a>
+                         <a class="nav-link" href="/users">Пользователи</a>
                      </li>
                 <#else>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Записаться</a>
+                        <a class="nav-link" href="/computers">Записаться</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Мои записи</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Поменять пароль</a>
+                        <a class="nav-link" href="/visits">Мои записи</a>
                     </li>
                 </#if>
+                <li class="nav-item">
+                    <a class="nav-link" href="/profile">Поменять пароль</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#" onclick="logout()">Выйти</a>
                 </li>
@@ -60,17 +60,6 @@
     <div class="container mt-4">
         <#nested>
     </div>
-    <!-- Optional JavaScript for bootstrap -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-            crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
-            integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
-            crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
-            integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
-            crossorigin="anonymous"></script>
     <script>
         function logout() {
             var form = document.createElement('form');
@@ -87,6 +76,18 @@
             form.submit();
         }
     </script>
+
+    <!-- Optional JavaScript for bootstrap -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+            integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+            integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+            crossorigin="anonymous"></script>
     </body>
     </html>
 </#macro>

@@ -54,7 +54,6 @@ function clickHandlerTime(e) {
     timeRangeElement.textContent = convertTimeRange(global_BeginTime + "-" + global_EndTime);
 }
 function showTimeTable(selectedDate) {
-    //parse 1-4,11-14 and next.
     let daysOff =[];
     let dateFormatted = selectedDate.toLocaleDateString('en-GB', {
         day: '2-digit',
@@ -63,7 +62,7 @@ function showTimeTable(selectedDate) {
     }).split('/').join('-');
     console.log(dateFormatted);
     if (dateFormatted in shedules) {
-        daysOff = shedules[dateFormatted];
+        daysOff = shedules[dateFormatted] + ",";
     }
     console.log("daysOff",daysOff);
 
@@ -101,7 +100,7 @@ function showTimeTable(selectedDate) {
 
 
             cell.appendChild(cellText);
-            if (daysOff.includes(num)) {
+            if (daysOff.includes(","+num+",")) {
                 cell.classList.add("nowork");
             } else {
                 cell.addEventListener('click',clickHandlerTime);

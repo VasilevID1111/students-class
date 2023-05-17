@@ -20,7 +20,7 @@
                 <td><span id="time-range${visit.visit_id}"></span> ${visit.date?date?string(' dd MMMM, yyyy')} </td>
                 <td>${visit.computer.name}</td>
                 <td>${visit.computer.purpose}</td>
-                <td><a href="/visits/delete/${visit.visit_id}">Отменить запись</a></td>
+                <td><a href="/visits/delete/${visit.visit_id}" class="btn btn-primary">Отменить запись</a></td>
             </tr>
             <script>
                 timeRangeElement = document.getElementById('time-range${visit.visit_id}');

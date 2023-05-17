@@ -1,6 +1,29 @@
 * {
     border: 1px dotted #e89633;
 }
+html{
+
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+body
+{
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+.login-container{
+    margin-top: 5%;
+    margin-bottom: 5%;
+    text-align: center; /* required by some browsers */
+}
+
+.login-form-1{
+    padding: 5%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+}
+
 
 input[type="checkbox"].isWorkable[disabled] {
     opacity: 0.5;

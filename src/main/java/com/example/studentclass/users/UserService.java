@@ -22,6 +22,15 @@ public class UserService {
     private final UserDAO userDAO;
     private final PasswordEncoder passwordEncoder;
 
+    public void changePasswordAndEmailByAuth(Authentication authentication, String password, String email) {
+        UserDTO user = getUserByAuthentication(authentication);
+        if (password != null && !password.equals("")) {
+            user.setPassword(passwordEncoder.encode(password));
+        }
+        user.setEmail(email);
+        userDAO.save(user);
+    }
+
     public UserDTO getUserByAuthentication(Authentication authentication){
         if (authentication != null && authentication.isAuthenticated()) {
             String login= ((UserDetails) authentication.getPrincipal()).getUsername();
@@ -69,5 +78,13 @@ public class UserService {
 
     public void deleteUserById(Integer userId) {
          userDAO.deleteById(userId) ;
+    }
+
+    public boolean checkPassword(Authentication authentication, String oldPassword) {
+        UserDTO user = getUserByAuthentication(authentication);
+        if (!passwordEncoder.matches(oldPassword,user.getPassword())){
+            return false;
+        }
+        return true;
     }
 }
