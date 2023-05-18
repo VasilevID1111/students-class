@@ -1,13 +1,11 @@
 <#import "blocks/template.ftlh" as t>
 <@t.template>
     <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <h1>Компьютеры</h1>
-            </div>
-        </div>
-        <div class="row">
-            <#if globalRole = "ROLE_WORKER">
+        <#if globalRole = "ROLE_WORKER">
+            <div class="form">
+                <div class="col-md-6">
+                    <h3>Создать компьютер</h3>
+                </div>
                 <form action="/computers/create" method="post">
                     <input type="hidden" name="_csrf" value="${_csrf.token}">
                     <div class="form-group">
@@ -24,43 +22,49 @@
                     </div>
                     <button type="submit" class="btn btn-primary mt-3">Добавить компьютер</button>
                 </form>
-            </#if>
-            <table class="table table-bordered">
-                <thead>
+            </div>
+        </#if>
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Выберите компьютер</h3>
+            </div>
+        </div>
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th>Название компьютера</th>
+                <th>Описание компьютера</th>
+                <th>Записаться</th>
+                <#if globalRole = "ROLE_WORKER">
+                    <th>Рабочий</th>
+                    <th>Удалить</th>
+                </#if>
+            </tr>
+            </thead>
+            <tbody>
+            <#list computers as computer>
+                <#if computer.workable = false && globalRole = "ROLE_STUDENT">
+                    <#continue>
+                </#if>
                 <tr>
-                    <th>Название компьютера</th>
-                    <th>Описание компьютера</th>
-                    <th>Записаться</th>
+                    <td>${computer.name}</td>
+                    <td>${computer.purpose}</td>
+                    <td>
+                        <a href="/computers/${computer.compId}" class="btn btn-primary">Записаться</a>
+                    </td>
                     <#if globalRole = "ROLE_WORKER">
-                        <th>Рабочий</th>
-                        <th>Удалить</th>
-                    </#if>
-                </tr>
-                </thead>
-                <tbody>
-                <#list computers as computer>
-                    <#if computer.workable = false && globalRole = "ROLE_STUDENT">
-                        <#continue>
-                    </#if>
-                    <tr>
-                        <td>${computer.name}</td>
-                        <td>${computer.purpose}</td>
                         <td>
-                            <a href="/computers/${computer.compId}" class="btn btn-primary">Записаться</a>
+                            <input type="checkbox" name="isWorkable" value="${computer.workable?c}"
+                                    ${computer.workable?string('checked', '')} disabled>
                         </td>
-                        <#if globalRole = "ROLE_WORKER">
-                            <td>
-                                <input type="checkbox" name="isWorkable" value="${computer.workable?c}"
-                                        ${computer.workable?string('checked', '')} disabled>
-                            </td>
                         <td>
                             <a href="/computers/delete/${computer.compId}" class="btn btn-danger">Удалить</a>
                         </td>
-                        </#if>
-                    </tr>
-                </#list>
-                </tbody>
-            </table>
-        </div>
+                    </#if>
+                </tr>
+            </#list>
+            </tbody>
+        </table>
+    </div>
     </div>
 </@t.template>

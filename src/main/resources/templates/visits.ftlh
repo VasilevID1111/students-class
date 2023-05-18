@@ -1,9 +1,9 @@
 <#import "blocks/template.ftlh" as t>
 <@t.template>
-    <h1>Запланированные посещения</h1>
+    <h3>Запланированные посещения</h3>
     <hr>
-    <table class="table table-striped table-rounded">
-        <thead>
+    <table class="table rounded-pill">
+        <thead class="thead-dark">
         <tr>
             <th>Дата и Время</th>
             <th>Компьютер</th>

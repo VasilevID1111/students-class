@@ -17,14 +17,13 @@
 //     })
 // }
 function sendtime() {
-    let month = currentMonth+1; //js по другому повспринимает месяца от 0 до 11
+    let month = currentMonth + 1; //js по другому повспринимает месяца от 0 до 11
     let dateOfVisit = global_CurrentDay + "-" + month + "-" + currentYear;
     let timeBlocks = global_BeginTime + '-' + global_EndTime;
     let dateField = document.getElementById('dateField');
     let timeBlocksField = document.getElementById('timeBlocksField');
     dateField.value = dateOfVisit;
     timeBlocksField.value = timeBlocks;
-    console.log(dateField.value,timeBlocksField.value)
     document.getElementById('addVisit').submit();
 }
 
@@ -52,6 +51,51 @@ function sendDataReport() {
         year: 'numeric'
     }).split('/').join('-');
     dateToField.value = (dateToFormatted == "Invalid Date") ? null : dateToFormatted;
-    console.log(loginField.value,compIdField.value,dateFromField.value,dateToField.value)
+    console.log(loginField.value, compIdField.value, dateFromField.value, dateToField.value)
     document.getElementById('getReport').submit();
+}
+
+function checkLogin() {
+    let login = document.getElementById("loginInput").value;
+    let fio = document.getElementById("FIO");
+    let user_id = document.getElementById("user_id");
+    let sendButton = document.getElementById("sendButton");
+    let cancelButton = document.getElementById("cancelLogin");
+    let sendData = {
+        login: login
+    }
+    fetch('/user/check/login/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-Token': token
+        },
+        body: JSON.stringify(sendData)
+    }).then(response => {
+        if (response.ok) {
+            return response.json().then(data => {
+                console.log(data);
+                fio.textContent = data.message;
+                user_id.value = data.user_id;
+                sendButton.disabled = false;
+                cancelButton.disabled = false;
+            });
+        } else {
+            throw new Error('Request failed.');
+        }
+    })
+        .catch(error => {
+            console.error(error);
+        });
+}
+
+function cancelLogin() {
+    document.getElementById("loginInput").value = "";
+    document.getElementById("FIO").textContent = "";
+    document.getElementById("user_id").value = "";
+    let sendButton = document.getElementById("sendButton");
+    let cancelButton = document.getElementById("cancelLogin");
+    sendButton.disabled = true;
+    cancelButton.disabled = true;
+
 }

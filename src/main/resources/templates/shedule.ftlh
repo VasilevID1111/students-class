@@ -1,7 +1,17 @@
 <#import "blocks/template.ftlh" as t>
 <@t.template>
-    <div class="container mt-5">
-        <div class="row">
+    <div class="container">
+        <div class="row md-5">
+            <label for="loginInput" class="col m-2 p-2">Логин пользователя:</label>
+            <input type="text" id="loginInput" class="form-control text-right col m-2" placeholder="Введите логин">
+            <div class="col d-flex md-3 flex-row">
+                <button id="checkLogin"
+                        class="btn btn-primary m-2" onclick="checkLogin()" style="width: 100%;">Указать</button>
+                <button id="cancelLogin"
+                        class="btn btn-danger m-2"  onclick="cancelLogin()" style="width: 100%; margin-left: 10px;" disabled>Отменить</button>
+            </div>
+        </div>
+        <div class="row mt-3">
             <div class="col-sm-12 col-md-6 col-lg-6">
                 <div class="card border-0">
                     <h3 class="card-header text-center" id="monthAndYear"></h3>
@@ -25,7 +35,7 @@
                         </tbody>
                     </table>
                 </div>
-
+                <h5><span id="FIO" class="col" role="alert"></span></h5>
             </div>
             <div class="col-sm-12 col-md-6 col-lg-6">
                 <div class="card border-0">
@@ -52,7 +62,10 @@
                     <input type="hidden" name="date" id="dateField">
                     <input type="hidden" name="timed_blocks" id="timeBlocksField">
                     <input type="hidden" name="status" value="sign">
-                    <button id="sendButton" class="btn btn-primary btn-block" style="width: 100%;" onclick="sendtime()">
+                    <input type="hidden" name="user_id" id="user_id">
+                    <button id="sendButton" class="btn btn-primary btn-block"
+                            style="width: 100%;" onclick="sendtime()"
+                            <#if globalRole = "ROLE_WORKER">disabled</#if>>
                         Записаться
                     </button>
                 </form>
@@ -67,6 +80,8 @@
             </#list>
         };
         console.log(shedules)
+        let token = '${_csrf.token}';
+        let role = '${globalRole}'
         let today = new Date();
         let currentMonth = today.getMonth();
         let currentYear = today.getFullYear();

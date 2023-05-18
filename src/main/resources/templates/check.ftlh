@@ -2,7 +2,8 @@
 <@t.template>
     Отметить студента за <span id="todayDate"></span>
     Не отмеченные студенты
-    <table class="table table-striped">
+    <table class="table">
+        <thead class="thead-dark">
         <tr>
             <th>Логин</th>
             <th>ФИО</th>
@@ -12,6 +13,7 @@
             <th>Пришел</th>
             <th>Пропустил</th>
         </tr>
+        </thead>
         <script>
             let timeRangeElement,timeRange
         </script>
@@ -48,7 +50,8 @@
         </script>
     </table>
     Студенты отмеченные
-    <table class="table table-striped">
+    <table class="table">
+        <thead class="thead-dark">
         <tr>
             <th>Логин</th>
             <th>ФИО</th>
@@ -57,6 +60,7 @@
             <th>Статус</th>
             <th>Вернуть к неопределенным</th>
         </tr>
+        </thead>
         <#list visits_defined as visit>
             <tr>
                 <td>${visit.user.login}</td>

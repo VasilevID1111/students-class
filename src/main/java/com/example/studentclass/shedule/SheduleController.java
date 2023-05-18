@@ -18,10 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.List;
-import java.util.Collections;
+import java.util.*;
 
 @Controller
 @RequiredArgsConstructor
@@ -58,10 +55,16 @@ public class SheduleController {
                         @RequestParam("date") String date,
                         @RequestParam("timed_blocks") String timeBlocks,
                         @RequestParam("status") String status,
+                        @RequestParam("user_id") Integer user_id,
                         Model model) throws ParseException {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String login= ((UserDetails) authentication.getPrincipal()).getUsername();
-        UserDTO user = userService.getUser(login);
+        UserDTO user;
+        if (user_id == null || user_id == 0) {
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            String login= ((UserDetails) authentication.getPrincipal()).getUsername();
+            user = userService.getUser(login);
+        } else {
+            user = userService.getUserById(user_id).get();
+        }
         SheduleDTO visit = new SheduleDTO();
         visit.setDate(dateFormat.parse(date));
         visit.setTimed_blocks(timeBlocks);
@@ -69,7 +72,12 @@ public class SheduleController {
         visit.setUser(user);
         visit.setComputer(computerService.getComputer(compId));
         sheduleService.saveShedule(visit);
-        return "redirect:/visits";
+        if (user_id == null || user_id == 0) {
+            return "redirect:/visits";
+        } else {
+            return "redirect:/check";
+        }
+
     }
 
 }

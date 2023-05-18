@@ -36,12 +36,15 @@
                     <input type="hidden" name="compId" id="compIdSend">
                     <input type="hidden" name="dateFrom" id="dateFromSend">
                     <input type="hidden" name="dateTo" id="dateToSend">
-                    <button id="sendButton" type="button" class="btn btn-primary" onclick="sendDataReport()">Сформировать отчет</button>
+                    <button id="sendButton" type="button" class="btn btn-primary" onclick="sendDataReport()">
+                        Сформировать отчет
+                    </button>
                 </form>
 
             </div>
         </div>
-        <table class="table table-striped">
+        <table class="table">
+            <thead class="thead-dark">
             <tr>
                 <th>Активность</th>
                 <th>Логин</th>
@@ -51,6 +54,7 @@
                 <th>Компьютер</th>
                 <th>Статус</th>
             </tr>
+            </thead>
             <script>
                 let timeRangeElement, timeRange
             </script>

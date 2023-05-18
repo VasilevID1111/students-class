@@ -6,7 +6,8 @@
         </div>
     </#if>
 
-    <table class="table table-striped">
+    <table class="table">
+        <thead class="thead-dark">
         <tr>
             <th>Логин</th>
             <th>ФИО</th>
@@ -16,6 +17,7 @@
             <th>Изменить активность</th>
             <th>Удалить пользователя</th>
         </tr>
+        </thead>
         <#list users as user>
             <tr>
                 <th>${user.login}</th>
