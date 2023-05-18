@@ -14,24 +14,33 @@ import java.security.Principal;
 @RequiredArgsConstructor
 public class GlobalControllerAdvice {
     private final UserService userService;
+    private String globalUserName;
+    private String globalRole;
     @ModelAttribute("globalUserName")
     public String globalUserName(Authentication authentication){
-        if (authentication != null) {
-            UserDTO user = userService.getUserByAuthentication(authentication);
-            return user.getFio();
-        }
-        else {
+        if (authentication == null) {
+            globalUserName = null;
             return "";
         }
+        if (globalUserName != null) {
+            return globalUserName;
+        }
+        UserDTO user = userService.getUserByAuthentication(authentication);
+        globalUserName = user.getFio();
+        return globalUserName;
     }
 
     @ModelAttribute("globalRole")
     public String globalRole(Authentication authentication){
-        if (authentication != null) {
-            UserDTO user = userService.getUserByAuthentication(authentication);
-            return user.getRole().getAuthority().toString();
-        } else {
+        if (authentication == null) {
+            globalRole = null;
             return "";
         }
+        if (globalRole != null) {
+            return globalRole;
+        }
+        UserDTO user = userService.getUserByAuthentication(authentication);
+        globalRole = user.getRole().getAuthority().toString();
+        return globalRole;
     }
 }
