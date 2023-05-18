@@ -26,7 +26,10 @@
         </div>
         <div class="row mb-3">
             <div class="d-flex justify-content-end">
-                <button type="button" class="btn btn-primary me-2">Скачать (xlsx)</button>
+                <form action="/report/xlsx" method="post">
+                    <input type="hidden" name="_csrf" value="${_csrf.token}">
+                    <button type="submit" class="btn btn-primary me-2">Скачать (xlsx)</button>
+                </form>
                 <form id="getReport" action="/report" method="post">
                     <input type="hidden" name="_csrf" value="${_csrf.token}">
                     <input type="hidden" name="login" id="loginSend">
