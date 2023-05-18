@@ -29,8 +29,8 @@
                 <h3>Выберите компьютер</h3>
             </div>
         </div>
-        <table class="table">
-            <thead class="thead-dark">
+        <table class="table table-bordered">
+            <thead class="table-dark">
             <tr>
                 <th>Название компьютера</th>
                 <th>Описание компьютера</th>
@@ -49,7 +49,7 @@
                 <tr>
                     <td>${computer.name}</td>
                     <td>${computer.purpose}</td>
-                    <td>
+                    <td class="text-center">
                         <a href="/computers/${computer.compId}" class="btn btn-primary">Записаться</a>
                     </td>
                     <#if globalRole = "ROLE_WORKER">
@@ -57,7 +57,7 @@
                             <input type="checkbox" name="isWorkable" value="${computer.workable?c}"
                                     ${computer.workable?string('checked', '')} disabled>
                         </td>
-                        <td>
+                        <td class="text-center">
                             <a href="/computers/delete/${computer.compId}" class="btn btn-danger">Удалить</a>
                         </td>
                     </#if>

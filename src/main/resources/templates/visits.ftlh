@@ -2,8 +2,8 @@
 <@t.template>
     <h3>Запланированные посещения</h3>
     <hr>
-    <table class="table rounded-pill">
-        <thead class="thead-dark">
+    <table class="table table-bordered">
+        <thead class="table-dark">
         <tr>
             <th>Дата и Время</th>
             <th>Компьютер</th>
@@ -20,7 +20,7 @@
                 <td><span id="time-range${visit.visit_id}"></span> ${visit.date?date?string(' dd MMMM, yyyy')} </td>
                 <td>${visit.computer.name}</td>
                 <td>${visit.computer.purpose}</td>
-                <td><a href="/visits/delete/${visit.visit_id}" class="btn btn-primary">Отменить запись</a></td>
+                <td class="text-center"><a href="/visits/delete/${visit.visit_id}" class="btn btn-primary">Отменить запись</a></td>
             </tr>
             <script>
                 timeRangeElement = document.getElementById('time-range${visit.visit_id}');

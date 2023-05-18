@@ -6,8 +6,8 @@
         </div>
     </#if>
 
-    <table class="table">
-        <thead class="thead-dark">
+    <table class="table table-bordered">
+        <thead class="table-dark">
         <tr>
             <th>Логин</th>
             <th>ФИО</th>
@@ -39,7 +39,7 @@
                 <th><input type="checkbox" id="isActive" name="isActive" checked="true"/></th>
                 <th><span name="date" id="dateCreate"></span></th>
                 <th>
-                    <button type="submit">Создать</button>
+                    <button type="submit" class="btn btn-primary">Создать</button>
                 </th>
                 <th></th>
             </tr>

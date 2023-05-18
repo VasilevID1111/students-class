@@ -43,8 +43,8 @@
 
             </div>
         </div>
-        <table class="table">
-            <thead class="thead-dark">
+        <table class="table table-bordered">
+            <thead class="table-dark">
             <tr>
                 <th>Активность</th>
                 <th>Логин</th>

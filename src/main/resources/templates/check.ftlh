@@ -1,9 +1,8 @@
 <#import "blocks/template.ftlh" as t>
 <@t.template>
-    Отметить студента за <span id="todayDate"></span>
-    Не отмеченные студенты
-    <table class="table">
-        <thead class="thead-dark">
+    <h2 class="m-3">Отметить студента за <span id="todayDate"></span></h2>
+    <table class="table table-bordered">
+        <thead class="table-dark">
         <tr>
             <th>Логин</th>
             <th>ФИО</th>
@@ -30,8 +29,8 @@
                         Не определено
                     </#if>
                 </td>
-                <td><a href="/check/attended/${visit.visit_id}" class="btn btn-primary">Пришел</a></td>
-                <td><a href="/check/absent/${visit.visit_id}" class="btn btn-danger">Пропустил</a></td>
+                <td class="text-center"><a href="/check/attended/${visit.visit_id}" class="btn btn-primary">Пришел</a></td>
+                <td class="text-center"><a href="/check/absent/${visit.visit_id}" class="btn btn-danger">Пропустил</a></td>
             </tr>
             <script>
                 timeRangeElement = document.getElementById('time-range${visit.visit_id}');
@@ -49,9 +48,9 @@
             }).split('/').join('-');;
         </script>
     </table>
-    Студенты отмеченные
-    <table class="table">
-        <thead class="thead-dark">
+    <h2 class="m-3">Студенты отмеченные</h2>
+    <table class="table table-bordered">
+        <thead class="table-dark">
         <tr>
             <th>Логин</th>
             <th>ФИО</th>
@@ -74,7 +73,7 @@
                         Присутствовал(а)
                     </#if>
                 </td>
-                <td><a href="/check/undefined/${visit.visit_id}" class="btn btn-primary">Вернуть</a></td>
+                <td class="text-center"><a href="/check/undefined/${visit.visit_id}" class="btn btn-primary">Вернуть</a></td>
             </tr>
             <script>
                 timeRangeElement = document.getElementById('time-range${visit.visit_id}');
