@@ -120,7 +120,6 @@ function convertTimeRange(timeRange) {
     const [start, end] = timeRange.split('-').map(Number);
     const startTime = startHour * 60 + startMinute + start * timeSlotMinutes;
     const endTime = startHour * 60 + startMinute + end * timeSlotMinutes + 15;
-    console.log(startTime,endTime);
     const startHourStr = String(Math.floor(startTime / 60)).padStart(2, '0');
     const startMinuteStr = String(startTime % 60).padStart(2, '0');
     const endHourStr = String(Math.floor(endTime / 60)).padStart(2, '0');

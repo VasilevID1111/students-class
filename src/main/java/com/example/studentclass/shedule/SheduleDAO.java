@@ -25,4 +25,14 @@ public interface SheduleDAO extends JpaRepository<SheduleDTO, Integer> {
     List<SheduleDTO> findByUserIdAfterDate (@Param("userId") Integer userId,@Param("startDate") Date afterDate);
     @Query("FROM SheduleDTO a WHERE a.user.Id = :userId")
     List<SheduleDTO> findByUser(Integer userId);
+
+    @Query("FROM SheduleDTO a WHERE a.date BETWEEN :twoWeeksEarlier AND :twoWeeksLater")
+    List<SheduleDTO> findAllBetweenTwoDate(Date twoWeeksEarlier, Date twoWeeksLater);
+
+    @Query("FROM SheduleDTO a WHERE 1=1 " +
+            "AND (a.user.login LIKE :login OR :login IS NULL OR :login = '') " +
+            "AND (a.computer.compId = :compId OR :compId IS NULL OR :compId = 0) " +
+            "AND (a.date >= :dateFrom OR DATE(:dateFrom) IS NULL) " +
+            "AND (a.date <= :dateTo OR DATE(:dateTo) IS NULL)")
+    List<SheduleDTO> findSheduleDTOSBySettings(String login, Integer compId, Date dateFrom, Date dateTo);
 }
