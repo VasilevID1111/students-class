@@ -35,7 +35,7 @@ public class CheckController {
     }
 
     @GetMapping("/check/{status}/{visit_id}")
-    public String deactivateUser(@PathVariable String status,@PathVariable Integer visit_id) {
+    public String checkUser(@PathVariable String status,@PathVariable Integer visit_id) {
         checkService.changeStatus(visit_id, status);
         return "redirect:/check";
     }
