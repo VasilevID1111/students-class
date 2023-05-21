@@ -1,16 +1,18 @@
 <#import "blocks/template.ftlh" as t>
 <@t.template>
     <div class="container">
-        <div class="row md-5">
-            <label for="loginInput" class="col m-2 p-2">Логин пользователя:</label>
-            <input type="text" id="loginInput" class="form-control text-right col m-2" placeholder="Введите логин">
-            <div class="col d-flex md-3 flex-row">
-                <button id="checkLogin"
-                        class="btn btn-primary m-2" onclick="checkLogin()" style="width: 100%;">Указать</button>
-                <button id="cancelLogin"
-                        class="btn btn-danger m-2"  onclick="cancelLogin()" style="width: 100%; margin-left: 10px;" disabled>Отменить</button>
+        <#if globalRole = "ROLE_WORKER">
+            <div class="row md-5">
+                <label for="loginInput" class="col m-2 p-2">Логин пользователя:</label>
+                <input type="text" id="loginInput" class="form-control text-right col m-2" placeholder="Введите логин">
+                <div class="col d-flex md-3 flex-row">
+                    <button id="checkLogin"
+                            class="btn btn-primary m-2" onclick="checkLogin()" style="width: 100%;">Указать</button>
+                    <button id="cancelLogin"
+                            class="btn btn-danger m-2"  onclick="cancelLogin()" style="width: 100%; margin-left: 10px;" disabled>Отменить</button>
+                </div>
             </div>
-        </div>
+        </#if>
         <div class="row mt-3">
             <div class="col-sm-12 col-md-6 col-lg-6">
                 <div class="card border-0">
@@ -74,6 +76,8 @@
 
     </div>
     <script>
+        let user_id = document.getElementById("user_id");
+        user_id.value = 0;
         let shedules = {
             <#list shedules?keys as key>
             "${key}": "${shedules[key]}",

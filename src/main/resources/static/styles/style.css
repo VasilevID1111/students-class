@@ -39,9 +39,9 @@ table td:hover.hover {
 }
 
 td.nowork {
-    background-color: #a9a9a9;
+    background-color: #dadada;
 }
 
 td.free {
-    background-color: #c3e6cb;
+    background-color: #daffe3;
 }

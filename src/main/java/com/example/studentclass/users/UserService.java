@@ -53,7 +53,7 @@ public class UserService {
     }
 
     public List<UserDTO> getUsers() {
-        return userDAO.findAll();
+        return userDAO.findAllByRole(Role.ROLE_STUDENT);
     }
 
     public String generatePassword(Integer passwordLength) {
