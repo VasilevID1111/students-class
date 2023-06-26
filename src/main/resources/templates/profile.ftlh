@@ -87,13 +87,12 @@
                 body: JSON.stringify(sendData)
             }).then(response => {
                 if (!response.ok) {
-
-                    console.log("Profile updated successfully");
+                    // Handle error response
+                    console.log("Failed to update profile");
                     message.classList.add("alert-danger");
                     message.textContent = "Произошла ошибка, данные не изменены, проверьте пароль"
                 } else {
-                    // Handle error response
-                    console.error("Failed to update profile");
+                    console.error("Profile updated successfully");
                     message.classList.add("alert-success");
                     message.textContent = "Данные успешно изменены";
                     // Perform any necessary actions, such as displaying an error message or handling specific error cases

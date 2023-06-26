@@ -27,6 +27,19 @@ public class EmailService {
 
         mailSender.send(message);
     }
+
+    public void sendProfileMail(String emailTo, String emailRegistration, String fio, String login) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom(username);
+        message.setTo(emailTo);
+        message.setSubject("Зарегистрировать нового человека в studentclass");
+        message.setText("Регистрация\n\n" +
+                "Почта: " + emailRegistration +"\n" +
+                "Логин: " + login + "\n" +
+                "ФИО: " + fio);
+
+        mailSender.send(message);
+    }
 }
 
 

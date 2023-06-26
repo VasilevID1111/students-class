@@ -56,6 +56,10 @@ public class UserService {
         return userDAO.findAllByRole(Role.ROLE_STUDENT);
     }
 
+    public List<UserDTO> getUsersWorkers() {
+        return userDAO.findAllByRole(Role.ROLE_WORKER);
+    }
+
     public String generatePassword(Integer passwordLength) {
         String passwordChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_+";
         return RandomStringUtils.random(passwordLength, passwordChars);

@@ -1,25 +1,49 @@
 package com.example.studentclass.global;
 
+import com.example.studentclass.emails.EmailService;
 import com.example.studentclass.users.UserDTO;
 import com.example.studentclass.users.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailSender;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
+import java.util.*;
 @Controller
 @AllArgsConstructor
 public class MainController {
     @Autowired
     private final UserService userService;
 
+    @Autowired
+    private final EmailService emailService;
+
     @GetMapping("/login")
     public String login() {
         return "login";
+    }
+
+    @GetMapping("/registration")
+    public String registration() {
+        return "registration";
+    }
+
+    @PostMapping("/registration")
+    public String sendProfile(@RequestParam("fio") String fio,
+                              @RequestParam("login") String login,
+                              @RequestParam("email") String emailRegistration,
+                              RedirectAttributes redirectAttributes) {
+        List<UserDTO> usersWorkers = userService.getUsersWorkers();
+        for (UserDTO user: usersWorkers) {
+            emailService.sendProfileMail(user.getEmail(), emailRegistration, fio, login);
+        }
+        redirectAttributes.addFlashAttribute("sendGood", true);
+        return "redirect:/login";
     }
 
     @GetMapping("/profile")

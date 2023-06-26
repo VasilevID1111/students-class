@@ -55,7 +55,7 @@
 
                     <!-- Forgot password link -->
                     <div class="text-center">
-                        <a href="#!" class="text-muted">Не зарегистрированы? Отправьте запрос</a>
+                        <a href="/registration" class="text-muted">Не зарегистрированы? Отправьте запрос</a>
                     </div>
 
                 </div>
