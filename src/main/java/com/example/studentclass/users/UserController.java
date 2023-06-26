@@ -1,5 +1,6 @@
 package com.example.studentclass.users;
 
+import com.example.studentclass.emails.EmailService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,7 @@ import java.util.Map;
 @PreAuthorize("hasAuthority('ROLE_WORKER')")
 public class UserController {
     private final UserService userService;
+    private final EmailService emailService;
 
     @GetMapping("/users")
     public String getUsers(Model model) {
@@ -36,11 +38,14 @@ public class UserController {
         user.setFio(fio);
         user.setEmail(email);
         user.setActive(!isActive.isEmpty());
+
         System.out.println(password);
         user.setPassword(password);
         if (!userService.createUser(user)) {
             redirectAttributes.addFlashAttribute("message", "Пользователь уже существует с логином " +
                    user.getLogin() + " уже существует под ФИО " + userService.getUser(login).getFio());
+        } else {
+            emailService.sendSimplePassword(email, login, password);
         }
         return "redirect:/users";
     }

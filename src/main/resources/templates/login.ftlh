@@ -53,10 +53,10 @@
 
                     </form>
 
-<#--                    <!-- Forgot password link &ndash;&gt;
+                    <!-- Forgot password link -->
                     <div class="text-center">
                         <a href="#!" class="text-muted">Не зарегистрированы? Отправьте запрос</a>
-                    </div>-->
+                    </div>
 
                 </div>
             </div>
