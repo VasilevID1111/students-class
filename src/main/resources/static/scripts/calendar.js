@@ -19,12 +19,16 @@ function next() {
     currentYear = (currentMonth === 11) ? currentYear + 1 : currentYear;
     currentMonth = (currentMonth + 1) % 12;
     showCalendar(currentMonth, currentYear);
+    let currentDate = new Date(currentYear, currentMonth, global_CurrentDay);
+    showTimeTable(currentDate);
 }
 
 function previous() {
     currentYear = (currentMonth === 0) ? currentYear - 1 : currentYear;
     currentMonth = (currentMonth === 0) ? 11 : currentMonth - 1;
     showCalendar(currentMonth, currentYear);
+    let currentDate = new Date(currentYear, currentMonth, global_CurrentDay);
+    showTimeTable(currentDate);
 }
 
 function showCalendar(month, year) {
