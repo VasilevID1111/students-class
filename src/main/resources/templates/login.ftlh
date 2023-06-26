@@ -27,20 +27,20 @@
                         <!-- Login input -->
                         <div class="form-group">
                             <label for="username">Логин</label>
-                            <input type="text" id="username" name="username" class="form-control"/>
+                            <input type="text" id="username" name="username" class="form-control" autocomplete="on"/>
                         </div>
 
                         <!-- Password input -->
                         <div class="form-group">
                             <label for="password">Пароль</label>
-                            <input type="password" id="password" name="password" class="form-control"/>
+                            <input type="password" id="password" name="password" class="form-control" autocomplete="on"/>
                         </div>
 
                         <!-- Checkbox -->
                         <div class="form-group d-flex justify-content-center">
                             <div class="form-check mb-2 " style="text-align: left;">
-                                <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked/>
-                                <label class="form-check-label" for="form2Example31" > Запомнить пароль </label>
+                                <input class="form-check-input" type="checkbox" value="" id="rememberPassword" checked/>
+                                <label class="form-check-label" for="rememberPassword" > Запомнить пароль </label>
                             </div>
                         </div>
 
@@ -57,11 +57,25 @@
                     <div class="text-center">
                         <a href="/registration" class="text-muted">Не зарегистрированы? Отправьте запрос</a>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script>
+    var rememberPasswordCheckbox = document.getElementById('rememberPassword');
+    var usernameField = document.getElementById('username');
+    var passwordField = document.getElementById('password');
+
+    rememberPasswordCheckbox.addEventListener('change', function() {
+        if (rememberPasswordCheckbox.checked) {
+            usernameField.setAttribute('autocomplete', 'on');
+            passwordField.setAttribute('autocomplete', 'on');
+        } else {
+            usernameField.setAttribute('autocomplete', 'off');
+            passwordField.setAttribute('autocomplete', 'off');
+        }
+    });
+</script>
 </body>
 </html>
